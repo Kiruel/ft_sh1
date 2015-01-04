@@ -16,7 +16,8 @@ CFLAG =
 
 LIBFT = ./libft/includes
 
-SOURCE = main.c 
+SOURCE = main.c \
+get_next_line.c
 
 POINTO = $(SOURCE:.c=.o)
 
