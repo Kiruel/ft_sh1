@@ -36,12 +36,12 @@ int	main(int ac, char **av, char **ev)
 			ret = execve(input, arg, NULL);
 			if (ft_strequ(arg[0], "clear"))
 				ft_clear(av, ev);
-/*			if (ret == -1 || arg[0][0] != '\n'))
+			if (ret == -1 && !ft_strequ(arg[0], "\n") && !ft_strequ(arg[0], NULL))
 			{
 				ft_putstr("-bash: ");
 				ft_putstr(arg[0]);
-				ft_putstr(": command not found");
-			}*/
+				ft_putendl(": command not found");
+			}
 		}
 	}
 	return (0);
