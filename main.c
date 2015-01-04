@@ -1,11 +1,7 @@
 #include "./includes/ft_sh1.h"
 
-int	main(int ac, char **av, char **ev)
+void	ft_clear(char **av, char **ev)
 {
-	char	**arg;
-	char	*input;
-	pid_t	work;
-
 	if(fork() == 0) 
 	{
 		execve("/usr/bin/clear", av, ev);
@@ -13,6 +9,17 @@ int	main(int ac, char **av, char **ev)
 	} 
 	else
 		wait(NULL);
+}
+
+int	main(int ac, char **av, char **ev)
+{
+	char	**arg;
+	char	*input;
+	pid_t	work;
+	char 	*buf;
+	int 	ret;
+	
+	ft_clear(av, ev);
 	while (42)
 	{
 		ft_putstr("$> ");
@@ -26,7 +33,15 @@ int	main(int ac, char **av, char **ev)
 			if (ft_strequ(arg[0], "exit"))
 				kill(work, SIGKILL);
 			input = ft_strjoin("/bin/", arg[0]);
-			execve(input, arg, NULL);
+			ret = execve(input, arg, NULL);
+			if (ft_strequ(arg[0], "clear"))
+				ft_clear(av, ev);
+/*			if (ret == -1 || arg[0][0] != '\n'))
+			{
+				ft_putstr("-bash: ");
+				ft_putstr(arg[0]);
+				ft_putstr(": command not found");
+			}*/
 		}
 	}
 	return (0);
