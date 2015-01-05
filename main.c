@@ -66,9 +66,8 @@ int	main(int ac, char **av, char **ev)
 	char	**arg;
 	char	*input;
 	pid_t	work;
-	char 	*buf;
-	int 	ret;
 	
+	(void)ac;
 	ft_clear(av, ev);
 	while (42)
 	{

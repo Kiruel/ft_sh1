@@ -10,9 +10,9 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = ft_sh1
+NAME = ft_minishell1
 
-CFLAG = 
+CFLAG = -Wall -Wextra -Werror
 
 LIBFT = ./libft/includes
 
