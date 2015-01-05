@@ -9,7 +9,8 @@ void	ft_exit(char **arg, pid_t work)
 void	ft_command_not_found(int ret, char **arg)
 {
 	if (ret == -1 && !ft_strequ(arg[0], "\n") && !ft_strequ(arg[0], NULL) &&
-		!ft_strequ(arg[0], "clear") && !ft_strequ(arg[0], "cd"))
+		!ft_strequ(arg[0], "clear") && !ft_strequ(arg[0], "cd") &&
+		!ft_strequ(arg[0], "setenv") && !ft_strequ(arg[0], "printenv"))
 	{
 		ft_putstr_fd(arg[0], 2);
 		ft_putendl_fd(": command not found", 2);
@@ -21,6 +22,28 @@ void	ft_clear(char **av, char **ev)
 	if(fork() == 0) 
 	{
 		execve("/usr/bin/clear", av, ev);
+		exit(1);
+	} 
+	else
+		wait(NULL);
+}
+
+void	ft_setenv(char **av, char **ev)
+{
+	if(fork() == 0) 
+	{
+		execve("/usr/bin/setenv", av, ev);
+		exit(1);
+	} 
+	else
+		wait(NULL);
+}
+
+void	ft_printenv(char **av, char **ev)
+{
+	if(fork() == 0) 
+	{
+		execve("/usr/bin/printenv", av, ev);
 		exit(1);
 	} 
 	else
@@ -64,6 +87,10 @@ int	main(int ac, char **av, char **ev)
 				ft_clear(av, ev);
 			if (ft_strequ(arg[0], "cd"))
 				ft_cd(arg);
+			if (ft_strequ(arg[0], "setenv"))
+				ft_setenv(arg, ev);
+			if (ft_strequ(arg[0], "printenv"))
+				ft_printenv(arg, ev);			
 		}
 	}
 	return (0);
