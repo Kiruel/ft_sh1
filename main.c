@@ -30,37 +30,12 @@ void	ft_clear(char **av, char **ev)
 void	ft_cd(char **arg)
 {
 	char *buf;
-	char *ret;
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
-	buf = (char*)ft_memalloc(sizeof(char) * 256);
-	buf = getcwd(buf, 256);
-	while (buf[i])
-		i++;
-	while (i > j && buf[i] != '/')
-		i--;
-	i++;
-	ret = (char*)ft_memalloc(sizeof(char) * i + 1);
-	while (j < i)
-	{
-		ret[j] = buf[j];
-		j++;
-	}
-	ft_putstr(ret);
-	if (ft_strequ(arg[1], ".."))
-	{
-		chdir(ret);
-	}
-/*	if(fork() == 0) 
-	{
-		execve("/usr/bin/cd", av, ev);
-		exit(1);
-	} 
+	buf = ft_strjoin("./", arg[1]);
+	if (arg[1][0] != '.')
+		chdir(buf);
 	else
-		wait(NULL);*/
+		chdir(arg[1]);
 }
 
 int	main(int ac, char **av, char **ev)
