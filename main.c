@@ -10,7 +10,8 @@ void	ft_command_not_found(int ret, char **arg)
 {
 	if (ret == -1 && !ft_strequ(arg[0], "\n") && !ft_strequ(arg[0], NULL) &&
 		!ft_strequ(arg[0], "clear") && !ft_strequ(arg[0], "cd") &&
-		!ft_strequ(arg[0], "setenv") && !ft_strequ(arg[0], "printenv"))
+		!ft_strequ(arg[0], "setenv") && !ft_strequ(arg[0], "printenv") &&
+		!ft_strequ(arg[0], "exit"))
 	{
 		ft_putstr_fd(arg[0], 2);
 		ft_putendl_fd(": command not found", 2);
@@ -50,6 +51,18 @@ void	ft_printenv(char **av, char **ev)
 		wait(NULL);
 }
 
+void	ft_printmake(char **av, char **ev)
+{
+	if(fork() == 0) 
+	{
+		ft_putstr("toto");
+		execve("/usr/bin/make", av, ev);
+		exit(1);
+	} 
+	else
+		wait(NULL);
+}
+
 void	ft_cd(char **arg)
 {
 	char *buf;
@@ -79,6 +92,7 @@ int	main(int ac, char **av, char **ev)
 		{
 			get_next_line(1, &input);
 			arg = ft_strsplit(input, ' ');
+			ft_command_not_found(execve(input, arg, ev), arg);
 			ft_exit(arg, work);
 			input = ft_strjoin("/bin/", arg[0]);
 			ft_command_not_found(execve(input, arg, ev), arg);
@@ -88,8 +102,10 @@ int	main(int ac, char **av, char **ev)
 				ft_cd(arg);
 			if (ft_strequ(arg[0], "setenv"))
 				ft_setenv(arg, ev);
-			if (ft_strequ(arg[0], "printenv"))
-				ft_printenv(arg, ev);			
+			if (ft_strequ(arg[0], "printenv") || ft_strequ(arg[0], "env"))
+				ft_printenv(arg, ev);
+			if (ft_strequ(arg[0], "make"))
+				ft_printmake(arg, ev);
 		}
 	}
 	return (0);
