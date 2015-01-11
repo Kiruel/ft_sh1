@@ -19,7 +19,7 @@ int			ft_atoi(const char *str)
 
 	i = 0;
 	result = 0;
-	if (*str == '\033')
+	if (*str == '\033' || *str == '\200')
 		return (0);
 	while (!ft_isprint(*str) || *str == ' ')
 		str++;

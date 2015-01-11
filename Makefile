@@ -12,12 +12,13 @@
 
 NAME = ft_minishell1
 
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror -I ./includes
 
 LIBFT = ./libft/includes
 
 SOURCE = main.c \
-get_next_line.c
+get_next_line.c \
+ft_find_pwd.c
 
 POINTO = $(SOURCE:.c=.o)
 

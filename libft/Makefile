@@ -60,10 +60,10 @@ ft_strnequ.c \
 ft_strjoin.c \
 ft_strtrim.c \
 ft_putendl.c \
-ft_putendl_fd.c \
 ft_strsub.c \
 ft_itoa.c \
-ft_strsplit.c 
+ft_strsplit.c \
+ft_putendl_fd.c
 
 POINTO = $(SOURCE:.c=.o)
 

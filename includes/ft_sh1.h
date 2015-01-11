@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <signal.h>
 
-int	get_next_line(int const fd, char **line);
+int		get_next_line(int const fd, char **line);
+char 	*ft_find_pwd(char **ev);
 
 #endif

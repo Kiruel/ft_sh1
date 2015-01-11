@@ -1,4 +1,4 @@
-#include "./includes/ft_sh1.h"
+#include "ft_sh1.h"
 
 void	ft_exit(char **arg, pid_t work)
 {
@@ -84,6 +84,7 @@ int	main(int ac, char **av, char **ev)
 	ft_clear(av, ev);
 	while (42)
 	{
+		ft_putstr(ft_find_pwd(ev));
 		ft_putstr("$> ");
 		work = fork();
 		if (work > 0)
