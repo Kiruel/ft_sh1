@@ -12,31 +12,31 @@
 
 NAME = ft_minishell1
 
-CFLAG = -Wall -Wextra -Werror -I ./includes
+CFLAGS = -Wall -Wextra -Werror -I ./includes -I ./libft
+
+CC = cc
 
 LIBFT = ./libft/includes
 
-SOURCE = main.c \
-get_next_line.c \
-ft_find_pwd.c
+SOURCE = ./srcs/main.c \
+./srcs/get_next_line.c \
+./srcs/ft_find_pwd.c
 
 POINTO = $(SOURCE:.c=.o)
 
-all: $(NAME)
+all: 
+	make $(NAME)
 	@echo "all: OK"
 
-$(NAME):
+$(NAME): $(POINTO)
 	@make -C libft/ fclean
 	@make -C libft
 	@make -C libft/ clean
-	@gcc -c $(CFLAG) $(SOURCE) -I $(LIBFT)
-	@gcc $(CFLAG) -o $(NAME) $(POINTO) ./libft/libft.a
-	@make clean
+	gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
 
 test:
-	@cc -c $(CFLAG) $(SOURCE)
-	@cc $(CFLAG) -o $(NAME) $(POINTO) ./libft/libft.a
-	@make clean
+	@gcc -c $(CFLAGS) $(SOURCE)
+	@gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
 	@echo "test: OK"
 
 clean:

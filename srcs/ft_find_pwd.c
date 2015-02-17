@@ -6,6 +6,7 @@ char *ft_find_pwd(char **ev)
 	char *buf;
 
 	i = 0;
+	(void)ev;
 	buf = (char*)ft_memalloc(sizeof(char) * 256);
 	while (ev[i])
 	{
