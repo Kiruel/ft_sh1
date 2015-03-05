@@ -29,20 +29,19 @@ all:
 	@echo "all: OK"
 
 $(NAME): $(POINTO)
-	@make -C libft/ fclean
 	@make -C libft
-	@make -C libft/ clean
 	gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
 
 test:
-	@gcc -c $(CFLAGS) $(SOURCE)
 	@gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
 	@echo "test: OK"
 
 clean:
+	@make -C libft/ clean	
 	@rm -rf $(POINTO)
 
 fclean: clean
+	@make -C libft/ fclean	
 	@rm -rf $(NAME)
 	@echo "fclean: OK"
 

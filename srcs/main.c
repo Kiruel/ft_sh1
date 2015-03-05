@@ -78,36 +78,28 @@ int	main(int ac, char **av, char **ev)
 {
 	char	**arg;
 	char	*input;
-	pid_t	work;
 	
 	(void)ac;
 	ft_clear(av, ev);
 	while (42)
 	{
-		ft_putstr(ft_find_pwd(ev));
 		ft_putstr("$> ");
-		work = fork();
-		if (work > 0)
-			wait(NULL);
-		if (work == 0)
-		{
-			get_next_line(1, &input);
-			arg = ft_strsplit(input, ' ');
-			ft_command_not_found(execve(input, arg, ev), arg);
-			ft_exit(arg, work);
-			input = ft_strjoin("/bin/", arg[0]);
-			ft_command_not_found(execve(input, arg, ev), arg);
-			if (ft_strequ(arg[0], "clear"))
-				ft_clear(av, ev);
-			if (ft_strequ(arg[0], "cd"))
-				ft_cd(arg);
-			if (ft_strequ(arg[0], "setenv"))
-				ft_setenv(arg, ev);
-			if (ft_strequ(arg[0], "printenv") || ft_strequ(arg[0], "env"))
-				ft_printenv(arg, ev);
-			if (ft_strequ(arg[0], "make"))
-				ft_printmake(arg, ev);
-		}
+		get_next_line(1, &input);
+		arg = ft_strsplit(input, ' ');
+		// ft_command_not_found(execve(input, arg, ev), arg);
+		// ft_exit(arg, work);
+		input = ft_strjoin("/bin/", arg[0]);
+		ft_command_not_found(execve(input, arg, ev), arg);
+		if (ft_strequ(arg[0], "clear"))
+			ft_clear(av, ev);
+		if (ft_strequ(arg[0], "cd"))
+			ft_cd(arg);
+		if (ft_strequ(arg[0], "setenv"))
+			ft_setenv(arg, ev);
+		if (ft_strequ(arg[0], "printenv") || ft_strequ(arg[0], "env"))
+			ft_printenv(arg, ev);
+		if (ft_strequ(arg[0], "make"))
+			ft_printmake(arg, ev);
 	}
 	return (0);
 }
