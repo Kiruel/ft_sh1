@@ -12,39 +12,42 @@
 
 NAME = ft_minishell1
 
-CFLAGS = -Wall -Wextra -Werror -I ./includes -I ./libft
+CFLAGS = -Wall -Werror -Wextra -I ./includes -I ./libft/headers -g
 
-CC = cc
+SRCS = srcs/
 
-LIBFT = ./libft/includes
+S = $(SRCS)main.c \
+$(SRCS)ft_error.c
 
-SOURCE = ./srcs/main.c \
-./srcs/get_next_line.c \
-./srcs/ft_find_pwd.c
+O = $(S:.c=.o)
 
-POINTO = $(SOURCE:.c=.o)
+CC=cc
 
-all: 
-	make $(NAME)
+#####   #####
+
+all: $(NAME)
 	@echo "all: OK"
 
-$(NAME): $(POINTO)
+$(NAME): $(O)
 	@make -C libft
-	gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
+	@$(CC) $(CFLAGS) -o $(NAME) $(O) -L./libft/ -lft
 
-test:
-	@gcc $(CFLAGS) -o $(NAME) $(POINTO) ./libft/libft.a
-	@echo "test: OK"
+libft:
+	make re -C libft/
 
 clean:
-	@make -C libft/ clean	
-	@rm -rf $(POINTO)
+	@make -C libft/ clean
+	@rm -rf $(O)
 
 fclean: clean
-	@make -C libft/ fclean	
+	@make -C libft/ fclean
 	@rm -rf $(NAME)
 	@echo "fclean: OK"
 
+ffclean:
+	@make -C libft/ fclean
+	@make fclean
+
 re: fclean all
 
-.PHONY: re fclean clean all $(NAME) test
+.PHONY: re fclean clean all libft
