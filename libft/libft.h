@@ -66,4 +66,6 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_memcmp(void *s1, void *s2, size_t n);
 size_t	ft_strlen(const char *str);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
+
 #endif

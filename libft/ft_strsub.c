@@ -22,7 +22,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	cpy = (char*)malloc(sizeof(char) * len + 1);
 	if (cpy == 0)
-		return(0);
+		return (0);
 	while (i < len)
 	{
 		cpy[i] = s[start];

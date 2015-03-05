@@ -16,12 +16,12 @@ char	*ft_strstr(const char *s1, const char *s2)
 {
 	int i;
 
-	if (!s2 || !*s2 || !s1)
+	if (!s2 || !s1)
 		return (0);
+	if (!s2[0])
+		return ((char*)s1);
 	while (*s1)
 	{
-		if (s2[i] == 0)
-			return ((char*)s1);
 		if (*s1 == *s2)
 		{
 			i = 0;

@@ -16,7 +16,7 @@
 static int		ft_count(const char *s, char c)
 {
 	int		i;
-	int 	counter;
+	int		counter;
 
 	counter = 0;
 	i = 0;
@@ -29,7 +29,7 @@ static int		ft_count(const char *s, char c)
 	return (counter);
 }
 
-char		**ft_strsplit(const char *s, char c)
+char			**ft_strsplit(const char *s, char c)
 {
 	char		**ret;
 	size_t		i;

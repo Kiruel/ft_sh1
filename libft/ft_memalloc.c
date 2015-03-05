@@ -20,6 +20,8 @@ void	*ft_memalloc(size_t size)
 
 	i = 0;
 	s1 = malloc(size);
+	if (size == 0)
+		return (NULL);
 	if (!s1)
 		return (0);
 	while (i < size)
