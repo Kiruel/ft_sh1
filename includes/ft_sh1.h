@@ -1,6 +1,7 @@
 #ifndef FT_SH1
 # define FT_SH1
-# include "../libft/libft.h"
+# include "libft.h"
+# include "get_next_line.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
@@ -10,11 +11,10 @@
 
 typedef struct 	s_env
 {
-	char **env;
+	char **new_env;
 }				t_env;
 
-int		get_next_line(int const fd, char **line);
-char 	*ft_find_pwd(char **ev);
+void	ft_recup_env(char **ev, t_env *e);
 
 /*
 ** ft_error

@@ -12,12 +12,13 @@
 
 NAME = ft_minishell1
 
-CFLAGS = -Wall -Werror -Wextra -I ./includes -I ./libft/headers -g
+CFLAGS = -Wall -Werror -Wextra -I ./includes -I ./libft/ -g 
 
 SRCS = srcs/
 
 S = $(SRCS)main.c \
-$(SRCS)ft_error.c
+$(SRCS)ft_error.c \
+$(SRCS)ft_recup_env.c
 
 O = $(S:.c=.o)
 
