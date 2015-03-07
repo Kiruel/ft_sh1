@@ -18,7 +18,9 @@ SRCS = srcs/
 
 S = $(SRCS)main.c \
 $(SRCS)ft_error.c \
-$(SRCS)ft_recup_env.c
+$(SRCS)ft_recup_env.c \
+$(SRCS)get_next_line.c \
+$(SRCS)ft_tools.c
 
 O = $(S:.c=.o)
 

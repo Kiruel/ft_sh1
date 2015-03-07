@@ -12,14 +12,24 @@
 typedef struct 	s_env
 {
 	char **new_env;
+	char **path;
 }				t_env;
 
 void	ft_recup_env(char **ev, t_env *e);
+
+/*
+** ft_tools
+**
+*/
+void 	ft_exe(char *input, char **arg, t_env *e);
+void	ft_get_bin(t_env *e);
+char 	*ft_find_bin(char *input, t_env *e);
 
 /*
 ** ft_error
 **
 */
 void	ft_error_args(int ac);
+void	ft_error_comm(char *input);
 
 #endif
