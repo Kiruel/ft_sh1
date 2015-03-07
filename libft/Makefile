@@ -11,7 +11,7 @@
 #******************************************************************************#
 NAME = libft.a
 
-CFLAG = -Wall -Werror -Wextra 
+CFLAG = -Wall -Werror -Wextra -g
 
 SOURCE = ft_putchar.c \
 ft_putstr.c \

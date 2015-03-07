@@ -24,6 +24,13 @@ void	ft_recup_env(char **ev, t_env *e);
 void 	ft_exe(char *input, char **arg, t_env *e);
 void	ft_get_bin(t_env *e);
 char 	*ft_find_bin(char *input, t_env *e);
+void 	ft_remplac_tab(char *input);
+
+/*
+** ft_builtings
+**
+*/
+int	ft_builtings(char **arg);
 
 /*
 ** ft_error

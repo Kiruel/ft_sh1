@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 17:32:11 by etheodor          #+#    #+#             */
-/*   Updated: 2014/11/13 16:33:53 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/07 14:14:21 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_atoi(const char *str)
 
 	i = 0;
 	result = 0;
-	if (str[0] == '\0')
+	if (!str || !str[0])
 		return (result);
 	if (*str == '\033' || *str == '\200')
 		return (0);

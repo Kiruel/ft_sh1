@@ -6,11 +6,24 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:08:23 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/07 12:08:39 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/07 12:56:14 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
+
+void 	ft_remplac_tab(char *input)
+{
+	int i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '\t')
+			input[i] = ' ';
+		i++;
+	}
+}
 
 char 	*ft_find_bin(char *input, t_env *e)
 {
@@ -18,6 +31,8 @@ char 	*ft_find_bin(char *input, t_env *e)
 	int i;
 	char *tmp_path;
 
+	if (lstat(input, &stat) == 0)
+		return (input);
 	tmp_path = NULL;
  	i = 0;
 	while (e->path[i])

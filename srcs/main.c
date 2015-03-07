@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/07 12:12:50 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/07 14:08:19 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(int ac, char **av, char **ev)
 {
 	char	**arg;
 	char 	*bin;
-	char	*input;
+	char	*input; 
 	t_env	e;
 
 	(void)av;
@@ -27,16 +27,17 @@ int		main(int ac, char **av, char **ev)
 		ft_get_bin(&e);		
 		ft_putstr("$> ");
 		get_next_line(1, &input);
-
+		ft_remplac_tab(input);
 		arg = ft_strsplit(input, ' ');
 		if (!arg[0])
 			continue ;
-		//check builtings
+		if (ft_builtings(arg) == -1)
+			continue ;
 		bin = ft_find_bin(arg[0], &e);
 		if (bin == NULL)
 		{
 			ft_error_comm(input);
-			continue ;			
+			continue ;
 		}
 		ft_exe(bin, arg, &e);
 	}
