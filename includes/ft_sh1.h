@@ -36,6 +36,7 @@ int	ft_builtings(char **arg);
 ** ft_error
 **
 */
+void 	ft_error_dir(char *dir);
 void	ft_error_args(int ac);
 void	ft_error_comm(char *input);
 
