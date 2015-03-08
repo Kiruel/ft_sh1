@@ -30,15 +30,18 @@ char 	*ft_find_bin(char *input, t_env *e)
 	struct stat stat;
 	int i;
 	char *tmp_path;
+	char *tmp;
 
 	if (lstat(input, &stat) == 0)
 		return (input);
 	tmp_path = NULL;
+	tmp = NULL;
  	i = 0;
 	while (e->path[i])
 	{
-		tmp_path = ft_strjoin(e->path[i], "/");
-		tmp_path = ft_strjoin(tmp_path, input);
+		tmp = ft_strjoin(e->path[i], "/");
+		tmp_path = ft_strjoin(tmp, input);
+		free (tmp);
 		if (lstat(tmp_path, &stat) == 0)
 			return (tmp_path);
 		i++;	

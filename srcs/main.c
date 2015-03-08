@@ -24,14 +24,14 @@ int		main(int ac, char **av, char **ev)
 	ft_recup_env(ev, &e);
 	while (42)
 	{
-		ft_get_bin(&e);		
+		ft_get_bin(&e);
 		ft_putstr("$> ");
 		get_next_line(1, &input);
 		ft_remplac_tab(input);
 		arg = ft_strsplit(input, ' ');
 		if (!arg[0])
 			continue ;
-		if (ft_builtings(arg) == -1)
+		if (ft_builtings(arg, &e) == -1)
 			continue ;
 		bin = ft_find_bin(arg[0], &e);
 		if (bin == NULL)
