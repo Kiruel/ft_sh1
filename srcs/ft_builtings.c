@@ -48,7 +48,7 @@ static int ft_cd(char **arg, t_env *e)
 	char *buf;
 
 	buf = NULL;
-	if ((arg[1] == NULL || ft_strcmp(arg[1], "~")) && ft_strcmp(arg[0], "cd") == 0)
+	if ((arg[1] == NULL && ft_strcmp(arg[0], "cd") == 0))
 	{
 		buf = ft_get_home(e, buf);
 		if (buf == NULL)
