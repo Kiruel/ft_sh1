@@ -30,6 +30,7 @@ void 	ft_remplac_tab(char *input);
 ** ft_builtings
 **
 */
+int ft_cd(char **arg, t_env *e);
 int	ft_builtings(char **arg, t_env *e);
 
 /*
