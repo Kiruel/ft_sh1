@@ -25,6 +25,7 @@ int		main(int ac, char **av, char **ev)
 	while (42)
 	{
 		ft_get_bin(&e);
+		ft_putstr(ft_find_env("PWD", &e));
 		ft_putstr("$> ");
 		get_next_line(1, &input);
 		ft_remplac_tab(input);
