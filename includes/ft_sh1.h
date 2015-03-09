@@ -14,6 +14,7 @@ typedef struct 	s_env
 {
 	char **new_env;
 	char **path;
+	char *old_pwd;
 }				t_env;
 
 void	ft_recup_env(char **ev, t_env *e);

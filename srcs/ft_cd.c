@@ -8,52 +8,19 @@ void	ft_maj_pwd(t_env *e)
 	int j;
 	int k;
 
-	k = 0;
-	j = 0;
-	i = 0;
+	k = -1;
+	j = -1;
+	i = -1;
 	buf = NULL;
 	buf = getcwd(buf, 1024);
-	while (ft_strncmp(e->new_env[i], "PWD", 3) != 0)
-		i++;
+	while (ft_strncmp(e->new_env[++i], "PWD", 3) != 0);
 	ft_bzero(e->new_env[i], ft_strlen(e->new_env[i]));
 	tmp = "PWD";
-	while (tmp[j])
-	{
+	while (tmp[++j])
 		e->new_env[i][j] = tmp[j];
-		j++;
-	}
 	e->new_env[i][j] = '=';
-	j++;
-	while (buf[k])
-	{
-		e->new_env[i][j] = buf[k];
-		k++;
-		j++;
-	}	
-/*	int i;
-	int j;
-	int k;
-
-	k = 0;
-	j = 0;
-	i = 0;
-	while (ft_strncmp(e->new_env[i], str, ft_strlen(str)) != 0)
-		i++;
-	j = 0;
-	ft_bzero(e->new_env[i], ft_strlen(e->new_env[i]));
-	while (str[j])
-	{
-		e->new_env[i][j] = str[j];
-		j++;
-	}
-	e->new_env[i][j] = '=';
-	j++;
-	while (path[k])
-	{
-		e->new_env[i][j] = path[k];
-		k++;
-		j++;
-	}*/
+	while (buf[++k])
+		e->new_env[i][++j] = buf[k];
 }
 
 char 	*ft_find_env(char *str, t_env *e)
@@ -82,14 +49,11 @@ int 	ft_cd(char **arg, t_env *e)
 		else if (ft_strcmp(arg[1], "~") == 0)
 			chdir(ft_find_env("HOME", e));
 		else if (arg[1] != NULL)
-		{
-
 			if (chdir(arg[1]) == -1)
 			{
 				if (errno == ENOENT)
 					ft_putendl_fd("No dir.", 2);
 			}
-		}
 		ft_maj_pwd(e);
 		return (-1);
 	}
