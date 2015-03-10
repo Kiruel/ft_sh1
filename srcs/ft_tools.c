@@ -67,7 +67,7 @@ void	ft_get_bin(t_env *e)
 
 void 	ft_exe(char *input, char **arg, t_env *e)
 {
-	if(fork() == 0) 
+	if(fork() == 0)
 	{
 		if (execve(input, arg, e->new_env) == -1)
 			ft_putendl_fd("Invalid command.", 2);

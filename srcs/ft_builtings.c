@@ -12,12 +12,27 @@
 
 #include "ft_sh1.h"
 
-static int ft_exit(char **arg)
+static int ft_exit(char **arg, t_env *e)
 {
+	int i;
+
+	i = 0;
 	if (ft_strcmp(arg[0], "exit") == 0 && arg[1] != 0)
+	{
+		while (e->new_env[i])
+			free(e->new_env[i++]);
+		free(e->new_env);
+		free(e->path);
 		exit (ft_atoi(arg[1]));
+	}
 	else if (ft_strcmp(arg[0], "exit") == 0)
+	{
+		while (e->new_env[i])
+			free(e->new_env[i++]);
+		free(e->new_env);
+		free(e->path);
 		exit (0);
+	}
 	return (0);
 }
 
@@ -25,7 +40,7 @@ int	ft_builtings(char **arg, t_env *e)
 {
 	if (ft_cd(arg, e) == -1)
 		return (-1);
-	if (ft_exit(arg) == -1)
+	if (ft_exit(arg, e) == -1)
 		return (-1);
 	return (0);
 }

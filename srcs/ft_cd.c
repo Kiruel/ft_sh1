@@ -21,6 +21,7 @@ void	ft_maj_pwd(t_env *e)
 	e->new_env[i][j] = '=';
 	while (buf[++k])
 		e->new_env[i][++j] = buf[k];
+	free(buf);
 }
 
 char 	*ft_find_env(char *str, t_env *e)
