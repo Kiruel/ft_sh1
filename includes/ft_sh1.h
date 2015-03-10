@@ -13,6 +13,7 @@
 typedef struct 	s_env
 {
 	char **new_env;
+	char *home;
 	char **path;
 	char *old_pwd;
 }				t_env;
