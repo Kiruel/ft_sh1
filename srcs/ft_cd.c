@@ -8,9 +8,9 @@ void	ft_maj_pwd(t_env *e)
 	int j;
 	int k;
 
-	k = -1;
 	j = -1;
 	i = -1;
+	k = -1;
 	buf = NULL;
 	buf = getcwd(buf, 1024);
 	while (ft_strncmp(e->new_env[++i], "PWD", 3) != 0);
