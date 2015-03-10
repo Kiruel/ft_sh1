@@ -40,6 +40,7 @@ int	ft_builtings(char **arg, t_env *e);
 ** ft_error
 **
 */
+void	ft_error_access(char *dir);
 void 	ft_error_dir(char *dir);
 void	ft_error_args(int ac);
 void	ft_error_comm(char *input);

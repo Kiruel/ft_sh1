@@ -33,6 +33,28 @@ char 	*ft_find_env(char *str, t_env *e)
 	return (&e->new_env[i][ft_strlen(str) + 1]);
 }
 
+void 	ft_features_cd(t_env *e, char **arg)
+{
+	struct stat stat;
+
+	if (arg[1] == NULL && ft_find_env("HOME", e) == NULL)
+		ft_putendl_fd("cd: No home on env.", 2);
+	else if (arg[1] == NULL && ft_find_env("HOME", e) != NULL)
+		chdir(ft_find_env("HOME", e));
+	else if (ft_strcmp(arg[1], "/") == 0)
+		chdir("/");
+	else if (ft_strcmp(arg[1], "~") == 0)
+		chdir(ft_find_env("HOME", e));
+	else if (arg[1] != NULL)
+		if (chdir(arg[1]) == -1)
+		{
+			if (lstat(arg[1], &stat) == -1)
+				ft_error_dir(arg[1]);
+			else if (access(arg[1] , R_OK) == -1)
+				ft_error_access(arg[1]);
+		}
+}
+
 int 	ft_cd(char **arg, t_env *e)
 {
 	char *buf;
@@ -40,20 +62,7 @@ int 	ft_cd(char **arg, t_env *e)
 	buf = NULL;
 	if (ft_strcmp(arg[0], "cd") == 0)
 	{
-		if (arg[1] == NULL && ft_find_env("HOME", e) == NULL)
-			ft_putendl_fd("cd: No home on env.", 2);
-		else if (arg[1] == NULL && ft_find_env("HOME", e) != NULL)
-			chdir(ft_find_env("HOME", e));
-		else if (ft_strcmp(arg[1], "/") == 0)
-			chdir("/");
-		else if (ft_strcmp(arg[1], "~") == 0)
-			chdir(ft_find_env("HOME", e));
-		else if (arg[1] != NULL)
-			if (chdir(arg[1]) == -1)
-			{
-				if (errno == ENOENT)
-					ft_putendl_fd("No dir.", 2);
-			}
+		ft_features_cd(e, arg);
 		ft_maj_pwd(e);
 		return (-1);
 	}

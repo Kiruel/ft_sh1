@@ -44,7 +44,7 @@ char 	*ft_find_bin(char *input, t_env *e)
 		free (tmp);
 		if (lstat(tmp_path, &stat) == 0)
 			return (tmp_path);
-		i++;	
+		i++;
 	}
 	return (NULL);
 }

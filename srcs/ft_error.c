@@ -1,9 +1,17 @@
 #include "ft_sh1.h"
 
+void	ft_error_access(char *dir)
+{
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(dir, 2);
+	ft_putendl_fd(": Permission denied", 2);
+}
+
 void 	ft_error_dir(char *dir)
 {
-	ft_putstr_fd("cd: no such file or directory: ", 2);
-	ft_putendl_fd(dir, 2);
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(dir, 2);
+	ft_putendl_fd(": No such file or directory", 2);
 }
 
 void	ft_error_comm(char *input)
