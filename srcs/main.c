@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/10 18:05:44 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/12 14:33:30 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,33 @@ void	ft_put_prompt(t_env *e)
 	ft_putstr(ft_find_env("USER", e));
 	ft_putstr("\033[0m \033[36m[");
 	if (ft_strncmp(ft_find_env("PWD", e), ft_find_env("HOME", e),
-		ft_strlen(ft_find_env("HOME", e))) == 0)
+		ft_strlen(ft_find_env("HOME", e))) == 0 || ft_strncmp(ft_find_env("PWD", e), e->home,
+		ft_strlen(e->home)) == 0)
 	{
 		ft_putstr("~");
 		tmp = ft_find_env("PWD", e);
-		ft_putstr(&tmp[ft_strlen(ft_find_env("HOME", e))]);
+		if (ft_strncmp(ft_find_env("PWD", e), e->home,
+		ft_strlen(e->home)) == 0)
+			ft_putstr(&tmp[ft_strlen(e->home)]);
+		else
+			ft_putstr(&tmp[ft_strlen(ft_find_env("HOME", e))]);
 	}
 	else
 		ft_putstr(ft_find_env("PWD", e));
 	ft_putstr("]\033[0m\033[34m}\033[0m\033[31m~> \033[0m");
+}
+
+void	ft_free(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (e->path[i])
+	{
+		free(e->path[i]);
+		i++;
+	}
+	free(e->path);
 }
 
 int		main(int ac, char **av, char **ev)
@@ -62,6 +80,7 @@ int		main(int ac, char **av, char **ev)
 		}
 		else
 			ft_exe(bin, arg, &e);
+		ft_free(&e);
 	}
 	return (0);
 }
