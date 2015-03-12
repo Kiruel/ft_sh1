@@ -28,8 +28,10 @@ typedef struct 	s_env
 	char *home;
 	char **path;
 	char *old_pwd;
+	char *input;
 }				t_env;
 
+void	ft_free(t_env *e);
 void	ft_recup_env(char **ev, t_env *e);
 
 /*

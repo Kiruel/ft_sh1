@@ -12,6 +12,18 @@
 
 #include "ft_sh1.h"
 
+void	ft_free(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (e->path[i])
+	{
+		free(e->path[i]);
+		i++;
+	}
+}
+
 void 	ft_remplac_tab(char *input)
 {
 	int i;

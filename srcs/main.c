@@ -36,24 +36,11 @@ void	ft_put_prompt(t_env *e)
 	ft_putstr("]\033[0m\033[34m}\033[0m\033[31m~> \033[0m");
 }
 
-void	ft_free(t_env *e)
-{
-	int i;
-
-	i = 0;
-	while (e->path[i])
-	{
-		free(e->path[i]);
-		i++;
-	}
-	free(e->path);
-}
-
 int		main(int ac, char **av, char **ev)
 {
 	char	**arg;
 	char 	*bin;
-	char	*input; 
+	// char	*input; 
 	t_env	e;
 	int i;
 
@@ -65,9 +52,9 @@ int		main(int ac, char **av, char **ev)
 	{
 		ft_get_bin(&e);
 		ft_put_prompt(&e);
-		get_next_line(1, &input);
-		ft_remplac_tab(input);
-		arg = ft_strsplit(input, ' ');
+		get_next_line(1, &e.input);
+		ft_remplac_tab(e.input);
+		arg = ft_strsplit(e.input, ' ');
 		if (!arg[0])
 			continue ;
 		if (ft_builtings(arg, &e) == -1)
@@ -75,12 +62,12 @@ int		main(int ac, char **av, char **ev)
 		bin = ft_find_bin(arg[0], &e);
 		if (bin == NULL)
 		{
-			ft_error_comm(input);
+			ft_error_comm(e.input);
 			continue ;
 		}
 		else
 			ft_exe(bin, arg, &e);
-		ft_free(&e);
+		// ft_free(&e);
 	}
 	return (0);
 }
