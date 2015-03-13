@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 15:48:13 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/10 18:04:29 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/13 12:58:51 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_fill_in_env(char **ev, t_env *e)
 		j++;
 		i++;
 	}
+	free(tmp);
 }
 
 void	ft_recup_env(char **ev, t_env *e)

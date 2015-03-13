@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:08:23 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/12 14:31:41 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/13 13:01:57 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_free(t_env *e)
 {
 	free(e->path);
+	free(e->input);
 }
 
 void 	ft_remplac_tab(char *input)
