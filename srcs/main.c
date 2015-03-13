@@ -40,7 +40,6 @@ int		main(int ac, char **av, char **ev)
 {
 	char	**arg;
 	char 	*bin;
-	// char	*input; 
 	t_env	e;
 	int i;
 
@@ -67,7 +66,7 @@ int		main(int ac, char **av, char **ev)
 		}
 		else
 			ft_exe(bin, arg, &e);
-		// ft_free(&e);
+		ft_free(&e);
 	}
 	return (0);
 }
