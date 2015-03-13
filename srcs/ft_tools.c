@@ -14,6 +14,14 @@
 
 void	ft_free(t_env *e)
 {
+	int i;
+
+	i = 0;
+	while (e->path[i])
+	{
+		free(e->path[i]);
+		i++;
+	}
 	free(e->path);
 	free(e->input);
 }

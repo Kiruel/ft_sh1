@@ -39,36 +39,49 @@ void	ft_put_prompt(t_env *e)
 
 int		main(int ac, char **av, char **ev)
 {
-	// char	**arg;
-	// char 	*bin;
+	char	**arg;
+	char 	*bin;
 	t_env	e;
 	int i;
 
 	i = 0;
 	(void)av;
-	(void)ev;
-	(void)ac;
-	// ft_error_args(ac);
-	// ft_recup_env(ev, &e);
+	ft_error_args(ac);
+	ft_recup_env(ev, &e);
 	while (42)
 	{
-		// ft_get_bin(&e);
-		// ft_put_prompt(&e);
+		ft_get_bin(&e);
+		ft_put_prompt(&e);
 		get_next_line(1, &e.input);
-		// ft_remplac_tab(e.input);
-		// arg = ft_strsplit(e.input, ' ');
-		// if (!arg[0])
-		// 	continue ;
-		// if (ft_builtings(arg, &e) == -1)
-		// 	continue ;
-		// bin = ft_find_bin(arg[0], &e);
-		// if (bin == NULL)
-		// {
-		// 	ft_error_comm(e.input);
-		// 	continue ;
-		// }
-		// else
-		// 	ft_exe(bin, arg, &e);
+		ft_remplac_tab(e.input);
+		arg = ft_strsplit(e.input, ' ');
+		if (!arg[0])
+		{
+			ft_free(&e);
+			free(arg);
+			continue ;
+		}
+		if (ft_builtings(arg, &e) == -1)
+		{
+			ft_free(&e);
+			free(arg);
+			continue ;
+		}
+		bin = ft_find_bin(arg[0], &e);
+		if (bin == NULL)
+		{
+			ft_error_comm(e.input);
+			free(bin);
+			free(arg);
+			ft_free(&e);
+			continue ;
+		}
+		else
+		{
+			ft_exe(bin, arg, &e);
+			free(arg);
+			free(bin);
+		}
 		ft_free(&e);
 	}
 	return (0);
