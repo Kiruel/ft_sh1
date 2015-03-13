@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/13 13:04:01 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/13 14:38:18 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,41 @@ void	ft_put_prompt(t_env *e)
 
 int		main(int ac, char **av, char **ev)
 {
-	char	**arg;
-	char 	*bin;
-	t_env	e;
+	// char	**arg;
+	// char 	*bin;
+	// t_env	e;
+	char *input;
 	int i;
 
 	i = 0;
 	(void)av;
-	ft_error_args(ac);
-	ft_recup_env(ev, &e);
+	(void)ac;
+	(void)ev;
+	// ft_error_args(ac);
+	// ft_recup_env(ev, &e);
 	while (42)
 	{
-		ft_get_bin(&e);
-		ft_put_prompt(&e);
-		get_next_line(1, &e.input);
-		ft_remplac_tab(e.input);
-		arg = ft_strsplit(e.input, ' ');
-		if (!arg[0])
+		// ft_get_bin(&e);
+		// ft_put_prompt(&e);
+		get_next_line(1, &input);
+		// ft_remplac_tab(e.input);
+		// arg = ft_strsplit(e.input, ' ');
+/*		if (!arg[0])
 		{
 			ft_free(&e);
+			i = 0;
+			while (arg[i])
+				free(arg[i++]);
 			free(arg);
 			continue ;
 		}
 		if (ft_builtings(arg, &e) == -1)
 		{
 			ft_free(&e);
-			free(arg);
+			i = 0;
+			while (arg[i])
+				free(arg[i++]);
+			free(arg[i]);
 			continue ;
 		}
 		bin = ft_find_bin(arg[0], &e);
@@ -72,17 +81,24 @@ int		main(int ac, char **av, char **ev)
 		{
 			ft_error_comm(e.input);
 			free(bin);
-			free(arg);
+			i = 0;
+			while (arg[i])
+				free(arg[i++]);
+			free(arg[i]);
 			ft_free(&e);
 			continue ;
 		}
 		else
 		{
 			ft_exe(bin, arg, &e);
-			free(arg);
+			i = 0;
+			while (arg[i])
+				free(arg[i++]);
+			free(arg[i]);
 			free(bin);
-		}
-		ft_free(&e);
+		}*/
+		free(input);
+		// ft_free(&e);
 	}
 	return (0);
 }
