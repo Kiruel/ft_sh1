@@ -40,11 +40,7 @@ void 	ft_remplac_tab(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] && input[i + 1] &&
-			(input[i] == ' ' || input[i + 1]) &&
-			(input[i + 1] == ' ' || input[i + 1] == '\t'))
-			input[i + 1] = 0;
-		else if (input[i] == '\t')
+		if (input[i] == '\t')
 			input[i] = ' ';
 		i++;
 	}

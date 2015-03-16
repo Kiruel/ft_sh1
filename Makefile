@@ -22,8 +22,7 @@ $(SRCS)ft_recup_env.c \
 $(SRCS)get_next_line.c \
 $(SRCS)ft_tools.c \
 $(SRCS)ft_builtings.c \
-$(SRCS)ft_cd.c \
-$(SRCS)ft_strsplit_tab.c
+$(SRCS)ft_cd.c
 
 O = $(S:.c=.o)
 

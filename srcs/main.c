@@ -61,7 +61,6 @@ int		main(int ac, char **av, char **ev)
 		else
 			ft_exe(bin, e.arg, &e);
 		ft_free(&e);
-		free(bin);
 	}
 	return (0);
 }

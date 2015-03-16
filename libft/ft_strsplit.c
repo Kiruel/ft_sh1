@@ -38,7 +38,7 @@ char			**ft_strsplit(const char *s, char c)
 
 	if (!s || !c)
 		return (0);
-	ret = ft_memalloc(sizeof(char *) * (ft_count(s, c) + 1));
+	ret = (char**)ft_memalloc(sizeof(char *) * (ft_count(s, c) + 1));
 	i = 0;
 	j = 0;
 	while (s[i])
