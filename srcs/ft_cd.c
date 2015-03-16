@@ -36,16 +36,6 @@ void	ft_maj_pwd(t_env *e)
 	free(buf);
 }
 
-char 	*ft_find_env(char *str, t_env *e)
-{
-	int i;
-
-	i = 0;
-	while (ft_strncmp(e->new_env[i], str, ft_strlen(str)) != 0)
-		i++;
-	return (&e->new_env[i][ft_strlen(str) + 1]);
-}
-
 void 	ft_features_cd(t_env *e, char **arg)
 {
 	struct stat stat;

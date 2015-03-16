@@ -39,8 +39,7 @@ void	ft_put_prompt(t_env *e)
 
 int		main(int ac, char **av, char **ev)
 {
-	char	**arg;
-	// char 	*bin;
+	char 	*bin;
 	t_env	e;
 	int i;
 
@@ -54,51 +53,15 @@ int		main(int ac, char **av, char **ev)
 		ft_put_prompt(&e);
 		get_next_line(1, &e.input);
 		ft_remplac_tab(e.input);
-		arg = ft_strsplit(e.input, ' ');
-		if (!arg[0])
-		{
-			ft_free(&e);
-			i = 0;
-			while (arg[i])
-				free(arg[i++]);
-			free(arg);
-			continue ;
-		}
-		i = 0;
-		while (arg[i])
-			free(arg[i++]);
-		free(arg);
-/*		if (ft_builtings(arg, &e) == -1)
-		{
-			ft_free(&e);
-			i = 0;
-			while (arg[i])
-				free(arg[i++]);
-			free(arg[i]);
-			continue ;
-		}
-		bin = ft_find_bin(arg[0], &e);
-		if (bin == NULL)
-		{
+		e.arg = ft_strsplit(e.input, ' ');
+		if (!e.arg[0]);
+		else if (ft_builtings(e.arg, &e) == -1);
+		else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
 			ft_error_comm(e.input);
-			free(bin);
-			i = 0;
-			while (arg[i])
-				free(arg[i++]);
-			free(arg[i]);
-			ft_free(&e);
-			continue ;
-		}
 		else
-		{
-			ft_exe(bin, arg, &e);
-			i = 0;
-			while (arg[i])
-				free(arg[i++]);
-			free(arg[i]);
-			free(bin);
-		}*/
+			ft_exe(bin, e.arg, &e);
 		ft_free(&e);
+		free(bin);
 	}
 	return (0);
 }

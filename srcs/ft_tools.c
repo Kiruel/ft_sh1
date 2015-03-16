@@ -23,6 +23,13 @@ void	ft_free(t_env *e)
 		i++;
 	}
 	free(e->path);
+	i = 0;
+	while (e->arg[i])
+	{
+		free(e->arg[i]);
+		i++;
+	}
+	free(e->arg);
 	free(e->input);
 }
 
@@ -33,7 +40,11 @@ void 	ft_remplac_tab(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\t')
+		if (input[i] && input[i + 1] &&
+			(input[i] == ' ' || input[i + 1]) &&
+			(input[i + 1] == ' ' || input[i + 1] == '\t'))
+			input[i + 1] = 0;
+		else if (input[i] == '\t')
 			input[i] = ' ';
 		i++;
 	}
@@ -55,9 +66,11 @@ char 	*ft_find_bin(char *input, t_env *e)
 	{
 		tmp = ft_strjoin(e->path[i], "/");
 		tmp_path = ft_strjoin(tmp, input);
-		free (tmp);
 		if (lstat(tmp_path, &stat) == 0)
+		{
+			free(tmp);
 			return (tmp_path);
+		}
 		i++;
 	}
 	return (NULL);

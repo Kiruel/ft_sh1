@@ -22,7 +22,7 @@ static int		ft_count(const char *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (s[i - 1] == c || i == 0))
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			counter++;
 		i++;
 	}

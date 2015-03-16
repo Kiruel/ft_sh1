@@ -12,14 +12,24 @@
 
 #include "ft_sh1.h"
 
+char 	*ft_find_env(char *str, t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (ft_strncmp(e->new_env[i], str, ft_strlen(str)) != 0)
+		i++;
+	return (&e->new_env[i][ft_strlen(str) + 1]);
+}
+
 void	ft_fill_in_env(char **ev, t_env *e)
 {
 	int i;
 	int j;
-	int k;
-	char *tmp;
-	char *str;
-	char *tmp2;
+	// int k;
+	// char *tmp;
+	// char *str;
+	// char *tmp2;
 
 	i = 0;
 	j = 0;
@@ -33,7 +43,7 @@ void	ft_fill_in_env(char **ev, t_env *e)
 		}
 		i++;
 	}
-	tmp2 = ft_find_env("HOME", e);
+/*	tmp2 = ft_find_env("HOME", e);
 	e->home = (char*)ft_memalloc(sizeof(char) * ft_strlen(tmp2));
 	k = 0;
 	while (tmp2[k])
@@ -48,7 +58,7 @@ void	ft_fill_in_env(char **ev, t_env *e)
 		tmp[j] = str[j];
 	i = -1;
 	while (tmp2[++i])
-		tmp[j] =tmp2[i], j++;
+		tmp[j] = tmp2[i], j++;
 	i = 5;
 	j = 0;
 	while (tmp[j])
@@ -56,8 +66,8 @@ void	ft_fill_in_env(char **ev, t_env *e)
 		e->new_env[3][i] = tmp[j];
 		j++;
 		i++;
-	}
-	free(tmp);
+	}*/
+	// free(tmp);
 }
 
 void	ft_recup_env(char **ev, t_env *e)
@@ -75,10 +85,7 @@ void	ft_recup_env(char **ev, t_env *e)
 	{
 		j = 0;
 		while (ev[i][j++]);
-		if (i == 3)
-			e->new_env[i] = (char*)ft_memalloc(sizeof(char) * 256);
-		else
-			e->new_env[i] = (char*)ft_memalloc(sizeof(char) * j);
+		e->new_env[i] = (char*)ft_memalloc(sizeof(char) * j);
 		i++;
 	}
 	ft_fill_in_env(ev, e);

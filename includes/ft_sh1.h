@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <sys/uio.h>
 # include <stdlib.h>
 # include <signal.h>
@@ -27,6 +28,7 @@ typedef struct 	s_env
 	char **new_env;
 	char *home;
 	char **path;
+	char **arg;
 	char *old_pwd;
 	char *input;
 }				t_env;
