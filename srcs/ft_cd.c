@@ -33,7 +33,6 @@ void	ft_maj_pwd(t_env *e)
 	e->new_env[i][j] = '=';
 	while (buf[++k])
 		e->new_env[i][++j] = buf[k];
-	free(buf);
 }
 
 void 	ft_features_cd(t_env *e, char **arg)

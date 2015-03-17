@@ -30,7 +30,7 @@ void	ft_free(t_env *e)
 		i++;
 	}
 	free(e->arg);
-	free(e->input);
+	// free(e->input);
 }
 
 void 	ft_remplac_tab(char *input)

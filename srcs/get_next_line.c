@@ -37,7 +37,6 @@ static char		*ft_join(char *s1, char *s2)
 		d++;
 	}
 	data[b + c + 1] = '\0';
-	free(s1);
 	return (data);
 }
 
@@ -103,6 +102,7 @@ int				get_next_line(int const fd, char **line)
 		*pos = 0;
 		*line = ft_strdup(list->buf);
 		ft_strcpy(list->buf, pos + 1);
+		free(line);
 		return (*line ? 1 : -1);
 	}
 	else

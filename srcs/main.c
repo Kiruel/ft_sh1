@@ -43,7 +43,6 @@ int		main(int ac, char **av, char **ev)
 	t_env	e;
 	int i;
 
-	i = 0;
 	(void)av;
 	ft_error_args(ac);
 	ft_recup_env(ev, &e);
@@ -60,7 +59,15 @@ int		main(int ac, char **av, char **ev)
 			ft_error_comm(e.input);
 		else
 			ft_exe(bin, e.arg, &e);
-		ft_free(&e);
+		i = 0;
+		while (e.path[i])
+		{
+			free(e.path[i]);
+			i++;
+		}
+		free(e.path);
+		free(bin);
+		free(e.input);
 	}
 	return (0);
 }
