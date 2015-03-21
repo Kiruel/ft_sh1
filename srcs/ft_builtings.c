@@ -11,6 +11,23 @@
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
+static	void	ft_free_exit(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (e->new_env[i])
+		free(e->new_env[i++]);
+	free(e->new_env);
+	i = 0;
+	while (e->path[i])
+	{
+		free(e->path[i]);
+		i++;
+	}
+	free(e->path);
+	free(e->input);
+}
 
 static int ft_exit(char **arg, t_env *e)
 {
@@ -19,18 +36,12 @@ static int ft_exit(char **arg, t_env *e)
 	i = 0;
 	if (ft_strcmp(arg[0], "exit") == 0 && arg[1] != 0)
 	{
-		while (e->new_env[i])
-			free(e->new_env[i++]);
-		free(e->new_env);
-		free(e->path);
+		ft_free_exit(e);
 		exit (ft_atoi(arg[1]));
 	}
 	else if (ft_strcmp(arg[0], "exit") == 0)
 	{
-		while (e->new_env[i])
-			free(e->new_env[i++]);
-		free(e->new_env);
-		free(e->path);
+		ft_free_exit(e);
 		exit (0);
 	}
 	return (0);

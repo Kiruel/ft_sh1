@@ -41,33 +41,35 @@ int		main(int ac, char **av, char **ev)
 {
 	char 	*bin;
 	t_env	e;
-	int i;
 
 	(void)av;
 	ft_error_args(ac);
 	ft_recup_env(ev, &e);
+	ft_get_bin(&e);
+	bin = NULL;
+	e.input = NULL;
+	e.arg = NULL;
 	while (42)
 	{
-		ft_get_bin(&e);
 		ft_put_prompt(&e);
+		// if (bin != NULL)
+		// 	free(bin);
+		// if (e.input != NULL)
+		// 	free(e.input);
 		get_next_line(1, &e.input);
-		ft_remplac_tab(e.input);
-		e.arg = ft_strsplit(e.input, ' ');
-		if (!e.arg[0]);
-		else if (ft_builtings(e.arg, &e) == -1);
-		else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
-			ft_error_comm(e.input);
-		else
-			ft_exe(bin, e.arg, &e);
-		i = 0;
-		while (e.path[i])
+		if (e.input != NULL)
 		{
-			free(e.path[i]);
-			i++;
+			ft_remplac_tab(e.input);
+			e.arg = ft_strsplit(e.input, ' ');
+			if (!e.arg[0]);
+			else if (ft_builtings(e.arg, &e) == -1);
+			else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
+				ft_error_comm(e.input);
+			else
+				ft_exe(bin, e.arg, &e);			
 		}
-		free(e.path);
-		free(bin);
 		free(e.input);
+		// ft_free(&e);
 	}
 	return (0);
 }
