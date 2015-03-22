@@ -46,11 +46,11 @@ int		main(int ac, char **av, char **ev)
 	ft_error_args(ac);
 	ft_recup_env(ev, &e);
 	ft_get_bin(&e);
-	bin = NULL;
 	e.input = NULL;
 	e.arg = NULL;
 	while (42)
 	{
+		bin = NULL;		
 		ft_put_prompt(&e);
 		get_next_line(1, &e.input);
 		ft_remplac_tab(e.input);
@@ -62,7 +62,8 @@ int		main(int ac, char **av, char **ev)
 		else
 			ft_exe(bin, e.arg, &e);
 		ft_free(&e);
-		// free(bin);
+		if (bin != NULL)
+			free(bin);
 		free(e.input);
 	}
 	return (0);
