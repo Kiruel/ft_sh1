@@ -52,24 +52,18 @@ int		main(int ac, char **av, char **ev)
 	while (42)
 	{
 		ft_put_prompt(&e);
-		// if (bin != NULL)
-		// 	free(bin);
-		// if (e.input != NULL)
-		// 	free(e.input);
 		get_next_line(1, &e.input);
-		if (e.input != NULL)
-		{
-			ft_remplac_tab(e.input);
-			e.arg = ft_strsplit(e.input, ' ');
-			if (!e.arg[0]);
-			else if (ft_builtings(e.arg, &e) == -1);
-			else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
-				ft_error_comm(e.input);
-			else
-				ft_exe(bin, e.arg, &e);			
-		}
+		ft_remplac_tab(e.input);
+		e.arg = ft_strsplit(e.input, ' ');
+		if (!e.arg[0]);
+		else if (ft_builtings(e.arg, &e) == -1);
+		else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
+			ft_error_comm(e.input);
+		else
+			ft_exe(bin, e.arg, &e);
+		ft_free(&e);
+		// free(bin);
 		free(e.input);
-		// ft_free(&e);
 	}
 	return (0);
 }

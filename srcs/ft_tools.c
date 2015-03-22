@@ -54,11 +54,13 @@ char 	*ft_find_bin(char *input, t_env *e)
 	{
 		tmp = ft_strjoin(e->path[i], "/");
 		tmp_path = ft_strjoin(tmp, input);
+		free(tmp);
 		if (lstat(tmp_path, &stat) == 0)
 		{
-			free(tmp);
 			return (tmp_path);
 		}
+		else
+			free(tmp_path);
 		i++;
 	}
 	return (NULL);

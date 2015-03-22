@@ -19,13 +19,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct		s_lst
-{
-	char			*buf;
-	int				fd;
-	struct s_lst	*next;
-}					t_lst;
-
 int					get_next_line(int fd, char **line);
 
 #endif

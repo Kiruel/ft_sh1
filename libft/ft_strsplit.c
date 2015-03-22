@@ -54,6 +54,6 @@ char			**ft_strsplit(const char *s, char c)
 			i = i + len;
 		}
 	}
-	ret[j] = NULL;
+	ret[j] = 0;
 	return (ret);
 }

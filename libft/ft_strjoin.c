@@ -1,29 +1,27 @@
 #include <stdlib.h>
 #include "libft.h"
 
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char	*s3;
 	int		i;
-	int		j;
+	int		len;
+	char	*str;
 
-	if (!s1 || !s2)
-		return (0);
-	s3 = (char*)malloc(sizeof(char) * ft_strlen((char*)s1) + \
-ft_strlen((char*)s2) + 1);
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	while (i < (int)ft_strlen((char*)s1))
+	len = ft_strlen(s1);
+	str = (char *)malloc(sizeof(str) * (ft_strlen(s2) + len + 1));
+	while (s1[i] != 0)
 	{
-		s3[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
-	while (j < (int)ft_strlen(s1) + (int)ft_strlen((char*)s2))
+	while (s2[i - len] != 0)
 	{
-		s3[i] = s2[j];
+		str[i] = s2[i - len];
 		i++;
-		j++;
 	}
-	s3[i] = '\0';
-	return (s3);
+	str[i] = 0;
+	return (str);
 }

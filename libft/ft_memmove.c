@@ -13,23 +13,29 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	char	*str;
+	int		i;
+	char	*temp;
+	char	*temp_dest;
+	char	*temp_src;
 
 	i = 0;
-	str = (char*)malloc(sizeof(char) * len + 1);
-	while (i < len)
+	temp = (char *)malloc(sizeof(temp) * (int)n);
+	temp_dest = (char *)dest;
+	temp_src = (char *)src;
+	while (i < (int)n)
 	{
-		str[i] = ((char*)src)[i];
+		temp[i] = temp_src[i];
 		i++;
 	}
 	i = 0;
-	while (i < len)
+	while (i < (int)n)
 	{
-		((char*)dst)[i] = str[i];
+		temp_dest[i] = temp[i];
 		i++;
 	}
-	return (dst);
+	dest = (void *)temp_dest;
+	free(temp);
+	return (dest);
 }
