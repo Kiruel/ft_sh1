@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/13 16:05:06 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/23 16:44:08 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	ft_put_prompt(t_env *e)
 	ft_putstr("\033[34m{\033[0m\033[32m");
 	ft_putstr(ft_find_env("USER", e));
 	ft_putstr("\033[0m \033[36m[");
-	if (ft_strncmp(ft_find_env("PWD", e), ft_find_env("HOME", e),
-		ft_strlen(ft_find_env("HOME", e))) == 0 || ft_strncmp(ft_find_env("PWD", e), e->home,
-		ft_strlen(e->home)) == 0)
+	if (ft_strncmp(ft_find_env("PWD", e), ft_find_env("HOME", e), ft_strlen(ft_find_env("HOME", e))) == 0
+		|| ft_strncmp(ft_find_env("PWD", e), e->home, ft_strlen(e->home)) == 0)
 	{
 		ft_putstr("~");
 		tmp = ft_find_env("PWD", e);

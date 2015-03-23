@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 15:48:13 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/13 12:58:51 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/23 16:56:17 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	ft_fill_in_env(char **ev, t_env *e)
 {
 	int i;
 	int j;
-	// int k;
-	// char *tmp;
-	// char *str;
-	// char *tmp2;
 
 	i = 0;
 	j = 0;
@@ -43,31 +39,6 @@ void	ft_fill_in_env(char **ev, t_env *e)
 		}
 		i++;
 	}
-/*	tmp2 = ft_find_env("HOME", e);
-	e->home = (char*)ft_memalloc(sizeof(char) * ft_strlen(tmp2));
-	k = 0;
-	while (tmp2[k])
-	{
-		e->home[k] = tmp2[k];
-		k++;
-	}
-	tmp = (char*)ft_memalloc(sizeof(char) * ft_strlen(e->new_env[3]) + 13);
-	j = -1;
-	str = "/Volumes/Data";
-	while (str[++j])
-		tmp[j] = str[j];
-	i = -1;
-	while (tmp2[++i])
-		tmp[j] = tmp2[i], j++;
-	i = 5;
-	j = 0;
-	while (tmp[j])
-	{
-		e->new_env[3][i] = tmp[j];
-		j++;
-		i++;
-	}*/
-	// free(tmp);
 }
 
 void	ft_recup_env(char **ev, t_env *e)
