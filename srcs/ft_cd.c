@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/23 17:31:04 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/23 17:55:59 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_maj_pwd(t_env *e, char *new_path)
 	buf = ft_strjoin("PWD=", new_path);
 	e->new_env[i] = (char*)ft_memalloc(sizeof(char) * ft_strlen(buf) + 1);
 	ft_strcpy(e->new_env[i], buf);
+	free(buf);
 }
 
 void 	ft_features_cd(t_env *e, char **arg)
@@ -49,7 +50,10 @@ void 	ft_features_cd(t_env *e, char **arg)
 	else if (ft_strcmp(arg[1], "..") == 0)
 	{
 		path = ft_find_env("PWD", e);
-		*(ft_strrchr(path, '/')) = 0;
+		if (*(ft_strrchr(path, '/') - 1) == '=')
+			path = ft_strdup("/");
+		else
+			*(ft_strrchr(path, '/')) = 0;
 	}
 	else
 		ft_error_dir(arg[1]);
