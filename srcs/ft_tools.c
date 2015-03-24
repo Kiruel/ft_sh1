@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 12:08:23 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/24 10:28:40 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/24 13:00:58 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char 	*ft_find_bin(char *input, t_env *e)
 	char *tmp_path;
 	char *tmp;
 
-	if (ft_strcmp(input, "..") == 0)
+	if (input && (input[0] == '.' && input[1] == '.'))
 		return (0);
 	if (lstat(input, &stat) == 0)
 		return (input);
