@@ -49,20 +49,20 @@ int		main(int ac, char **av, char **ev)
 	e.arg = NULL;
 	while (42)
 	{
-		bin = NULL;		
+		bin = NULL;
 		ft_put_prompt(&e);
 		get_next_line(1, &e.input);
 		ft_remplac_tab(e.input);
 		e.arg = ft_strsplit(e.input, ' ');
-		if (!e.arg[0]);
+		if (!e.arg[0] || ft_strcmp(e.arg[0], ".") == 0);
 		else if (ft_builtings(e.arg, &e) == -1);
 		else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
 			ft_error_comm(e.input);
 		else
 			ft_exe(bin, e.arg, &e);
-		ft_free(&e);
 		if (bin != NULL)
 			free(bin);
+		ft_free(&e);
 		free(e.input);
 	}
 	return (0);

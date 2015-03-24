@@ -30,7 +30,7 @@ void	ft_maj_pwd(t_env *e, char *new_path)
 	free(buf);
 }
 
-void 	ft_features_cd(t_env *e, char **arg)
+int 	ft_features_cd(t_env *e, char **arg)
 {
 	struct stat stat;
 	char *path;
@@ -55,16 +55,21 @@ void 	ft_features_cd(t_env *e, char **arg)
 		else
 			*(ft_strrchr(path, '/')) = 0;
 	}
+	else if (ft_strcmp(arg[1], ".") == 0)
+		return (-1);
 	else
-		ft_error_dir(arg[1]);
-	if (!chdir(path) && arg[1] != NULL)
 	{
-		if (lstat(arg[1], &stat) == -1)
-			ft_error_dir(arg[1]);
-		else if (access(arg[1] , R_OK) == -1)
-			ft_error_access(arg[1]);
+		if (!chdir(path) && arg[1] != NULL)
+		{
+			if (lstat(arg[1], &stat) == -1)
+				ft_error_dir(arg[1]);
+			else if (access(arg[1] , R_OK) == -1)
+				ft_error_access(arg[1]);
+		}
+		return (-1);
 	}
 	ft_maj_pwd(e, path);
+	return (0);
 }
 
 int 	ft_cd(char **arg, t_env *e)
@@ -74,7 +79,8 @@ int 	ft_cd(char **arg, t_env *e)
 	buf = NULL;
 	if (ft_strcmp(arg[0], "cd") == 0)
 	{
-		ft_features_cd(e, arg);
+		if (ft_features_cd(e, arg) == -1)
+			return (0);
 		return (-1);
 	}
 	return (0);

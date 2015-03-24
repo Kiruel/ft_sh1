@@ -56,9 +56,7 @@ char 	*ft_find_bin(char *input, t_env *e)
 		tmp_path = ft_strjoin(tmp, input);
 		free(tmp);
 		if (lstat(tmp_path, &stat) == 0)
-		{
 			return (tmp_path);
-		}
 		else
 			free(tmp_path);
 		i++;
