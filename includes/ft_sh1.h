@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/12 14:20:17 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/24 10:36:09 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	ft_builtings(char **arg, t_env *e);
 ** ft_error
 **
 */
+void	ft_error_env();
 void	ft_error_access(char *dir);
 void 	ft_error_dir(char *dir);
 void	ft_error_args(int ac);

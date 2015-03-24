@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/23 16:44:08 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/24 10:44:58 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,12 @@ int		main(int ac, char **av, char **ev)
 	char 	*bin;
 	t_env	e;
 
-	(void)av;
+	if (ev == NULL || ev[0] == NULL)
+	{
+		ft_error_env();
+		return (0);
+	}
+	(void)av;	
 	ft_error_args(ac);
 	ft_recup_env(ev, &e);
 	ft_get_bin(&e);
@@ -60,7 +65,7 @@ int		main(int ac, char **av, char **ev)
 			ft_error_comm(e.input);
 		else
 			ft_exe(bin, e.arg, &e);
-		if (bin != NULL)
+		if (bin)
 			free(bin);
 		ft_free(&e);
 		free(e.input);

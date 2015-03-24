@@ -6,11 +6,17 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/12 14:20:26 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/03/24 10:37:03 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
+
+void	ft_error_env()
+{
+	ft_putendl_fd("No env....", 2);
+	exit(0);
+}
 
 void	ft_error_access(char *dir)
 {
