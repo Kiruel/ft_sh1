@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/23 17:55:59 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/29 11:57:02 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_maj_pwd(t_env *e, char *new_path)
 	e->new_env[i] = (char*)ft_memalloc(sizeof(char) * ft_strlen(buf) + 1);
 	ft_strcpy(e->new_env[i], buf);
 	free(buf);
+	chdir(new_path);
 }
 
 int 	ft_features_cd(t_env *e, char **arg)
@@ -45,7 +46,7 @@ int 	ft_features_cd(t_env *e, char **arg)
 		else
 			path = ft_strdup("/");
 	}
-	else if (ft_strcmp(arg[1], "/") == 0)
+	else if (ft_strcmp(arg[1], "/") == 0 || (arg[1][0] == '/' && arg[1][1] == '/'))
 		path = ft_strdup("/");
 	else if (ft_strcmp(arg[1], "..") == 0)
 	{
@@ -57,16 +58,28 @@ int 	ft_features_cd(t_env *e, char **arg)
 	}
 	else if (ft_strcmp(arg[1], ".") == 0)
 		return (-1);
+	else if (!chdir(path) && arg[1] != NULL)
+	{
+		if (lstat(arg[1], &stat) == -1)
+			ft_error_dir(arg[1]);
+		else if (access(arg[1] , R_OK) == -1)
+			ft_error_access(arg[1]);
+		return (-1);
+	}
 	else
 	{
-		if (!chdir(path) && arg[1] != NULL)
+		path = ft_strjoin(ft_find_env("PWD", e), "/");
+		path = ft_strjoin(path, arg[1]);
+		if (lstat(arg[1], &stat) == -1)
 		{
-			if (lstat(arg[1], &stat) == -1)
-				ft_error_dir(arg[1]);
-			else if (access(arg[1] , R_OK) == -1)
-				ft_error_access(arg[1]);
+			ft_error_dir(arg[1]);
+			return (-1);
 		}
-		return (-1);
+		else if (access(arg[1] , R_OK) == -1)
+		{
+			ft_error_access(arg[1]);
+			return (-1);
+		}
 	}
 	ft_maj_pwd(e, path);
 	return (0);

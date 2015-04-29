@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/24 13:04:51 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/29 11:54:59 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		main(int ac, char **av, char **ev)
 		ft_error_env();
 		return (0);
 	}
-	(void)av;	
+	(void)av;
 	ft_error_args(ac);
 	ft_recup_env(ev, &e);
 	ft_get_bin(&e);
@@ -64,7 +64,10 @@ int		main(int ac, char **av, char **ev)
 		else if ((bin = ft_find_bin(e.arg[0], &e)) == NULL)
 			ft_error_comm(e.input);
 		else
-			ft_exe(bin, e.arg, &e);
+		{
+			if (ft_strcmp(bin, "/usr/bin/cd") != 0)
+				ft_exe(bin, e.arg, &e);
+		}
 		if (bin)
 			free(bin);
 		ft_free(&e);
