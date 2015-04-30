@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/24 10:36:09 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/30 11:19:54 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,14 @@ void 	ft_remplac_tab(char *input);
 ** ft_builtings
 **
 */
-int ft_cd(char **arg, t_env *e);
-int	ft_builtings(char **arg, t_env *e);
+int 	ft_cd(char **arg, t_env *e);
+int 	ft_go_to_path(t_env *e, char **arg, char *tmp, char *path);
+char 	*ft_use_option_p(t_env *e, char **arg, char *tmp, char *path);
+int 	ft_error_cd(char **arg);
+char 	*ft_go_to_back(t_env *e, char *path);
+char 	*ft_go_to_home(t_env *e, char *path);
+void	ft_maj_pwd(t_env *e, char *new_path, char **arg);
+int		ft_builtings(char **arg, t_env *e);
 
 /*
 ** ft_error

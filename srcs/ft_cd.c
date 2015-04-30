@@ -6,82 +6,57 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 14:00:35 by etheodor          #+#    #+#             */
-/*   Updated: 2015/04/29 11:57:02 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/30 11:17:32 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh1.h"
 
-void	ft_maj_pwd(t_env *e, char *new_path)
+void	ft_maj_pwd(t_env *e, char *new_path, char **arg)
 {
 	char *buf;
 	int i;
 	int j;
-	int k;
 
 	j = -1;
 	i = -1;
-	k = -1;
-	while (ft_strncmp(e->new_env[++i], "PWD", 3) != 0);
+	while (ft_strncmp(e->new_env[++j], "OLDPWD=", 7) != 0);
+	free(e->new_env[j]);
+	buf = ft_strjoin("OLDPWD=", ft_find_env("PWD", e));
+	e->new_env[j] = buf;
+	while (ft_strncmp(e->new_env[++i], "PWD=", 4) != 0);
 	free(e->new_env[i]);
 	buf = ft_strjoin("PWD=", new_path);
-	e->new_env[i] = (char*)ft_memalloc(sizeof(char) * ft_strlen(buf) + 1);
-	ft_strcpy(e->new_env[i], buf);
-	free(buf);
+	e->new_env[i] = buf;
 	chdir(new_path);
+	if ((arg[1] && ft_strcmp(arg[1], "..") != 0) || (arg[1] == NULL || ft_strcmp(arg[1], "~") == 0))
+		free(new_path);
 }
 
 int 	ft_features_cd(t_env *e, char **arg)
 {
-	struct stat stat;
 	char *path;
+	char *tmp;
 
+	tmp = NULL;
 	path = NULL;
 	if (arg[1] == NULL && ft_find_env("HOME", e) == NULL)
 		ft_putendl_fd("cd: No home on env.", 2);
 	else if (arg[1] == NULL || ft_strcmp(arg[1], "~") == 0)
-	{
-		if (ft_find_env("HOME", e))
-			path = ft_strdup(ft_find_env("HOME", e));
-		else
-			path = ft_strdup("/");
-	}
+		path = ft_go_to_home(e, path);
 	else if (ft_strcmp(arg[1], "/") == 0 || (arg[1][0] == '/' && arg[1][1] == '/'))
 		path = ft_strdup("/");
 	else if (ft_strcmp(arg[1], "..") == 0)
-	{
-		path = ft_find_env("PWD", e);
-		if (*(ft_strrchr(path, '/') - 1) == '=')
-			path = ft_strdup("/");
-		else
-			*(ft_strrchr(path, '/')) = 0;
-	}
+		path = ft_go_to_back(e, path);
 	else if (ft_strcmp(arg[1], ".") == 0)
 		return (-1);
 	else if (!chdir(path) && arg[1] != NULL)
-	{
-		if (lstat(arg[1], &stat) == -1)
-			ft_error_dir(arg[1]);
-		else if (access(arg[1] , R_OK) == -1)
-			ft_error_access(arg[1]);
-		return (-1);
-	}
+		return (ft_error_cd(arg));
+	else if (ft_strcmp(arg[1], "-P") == 0)
+		path = ft_use_option_p(e, arg, tmp, path);
 	else
-	{
-		path = ft_strjoin(ft_find_env("PWD", e), "/");
-		path = ft_strjoin(path, arg[1]);
-		if (lstat(arg[1], &stat) == -1)
-		{
-			ft_error_dir(arg[1]);
-			return (-1);
-		}
-		else if (access(arg[1] , R_OK) == -1)
-		{
-			ft_error_access(arg[1]);
-			return (-1);
-		}
-	}
-	ft_maj_pwd(e, path);
+		return (ft_go_to_path(e, arg, tmp, path));
+	ft_maj_pwd(e, path, arg);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/07 10:53:04 by etheodor          #+#    #+#             */
-/*   Updated: 2015/04/29 11:54:59 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/29 16:19:42 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int		main(int ac, char **av, char **ev)
 	{
 		bin = NULL;
 		ft_put_prompt(&e);
-		get_next_line(1, &e.input);
+		if (get_next_line(1, &e.input) == -1)
+			exit(1);
 		ft_remplac_tab(e.input);
 		e.arg = ft_strsplit(e.input, ' ');
 		if (!e.arg[0] || ft_strcmp(e.arg[0], ".") == 0);

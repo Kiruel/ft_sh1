@@ -6,7 +6,7 @@
 /*   By: etheodor <etheodor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/14 11:01:10 by etheodor          #+#    #+#             */
-/*   Updated: 2015/03/13 15:16:40 by etheodor         ###   ########.fr       */
+/*   Updated: 2015/04/29 16:16:07 by etheodor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int		gnl_read(int fd, char **line, char *buf, int statut)
 			statut = read(fd, (void *)buf, BUFF_SIZE);
 		if (statut == 0)
 			c = 0;
+		if (statut == -1)
+			return(-1);
 		pos = ft_strchr(buf, c);
 		old = buf_save;
 		buf_save = gnl_join(buf_save, buf, c);
