@@ -51,7 +51,9 @@ int	ft_builtings(char **arg, t_env *e)
 {
 	if (ft_cd(arg, e) == -1)
 		return (-1);
-	if (ft_exit(arg, e) == -1)
+	else if (ft_exit(arg, e) == -1)
 		return (-1);
+	//else if (ft_setenv(arg, e) == -1)
+	//	return (-1);
 	return (0);
 }

@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = ft_minishell1
+NAME = minishell1
 
 CFLAGS = -Wall -Werror -Wextra -I ./includes -I ./libft/ -g
 
@@ -23,7 +23,8 @@ $(SRCS)get_next_line.c \
 $(SRCS)ft_tools.c \
 $(SRCS)ft_builtings.c \
 $(SRCS)ft_cd.c \
-$(SRCS)ft_cd_features.c
+$(SRCS)ft_cd_features.c \
+$(SRCS)ft_setenv.c
 
 O = $(S:.c=.o)
 

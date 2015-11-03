@@ -57,7 +57,8 @@ int 	ft_error_cd(char **arg);
 char 	*ft_go_to_back(t_env *e, char *path);
 char 	*ft_go_to_home(t_env *e, char *path);
 int	ft_maj_pwd(t_env *e, char *new_path, char **arg);
-int		ft_builtings(char **arg, t_env *e);
+int	ft_builtings(char **arg, t_env *e);
+int	ft_setenv(char **arg, t_env *e);
 
 /*
 ** ft_error

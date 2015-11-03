@@ -70,9 +70,6 @@ int 	ft_features_cd(t_env *e, char **arg)
 
 int 	ft_cd(char **arg, t_env *e)
 {
-	char *buf;
-
-	buf = NULL;
 	if (ft_strcmp(arg[0], "cd") == 0)
 	{
 		if (ft_features_cd(e, arg) == -1)
