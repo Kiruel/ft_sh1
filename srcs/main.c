@@ -12,12 +12,13 @@
 
 #include "ft_sh1.h"
 #include <stdio.h>
+#include <signal.h>
 
 void	ft_put_prompt(t_env *e)
 {
 	char *tmp;
 
-	ft_putstr("\033[34m{\033[0m\033[32m");
+	ft_putstr("\033[0m\033[32m");
 	ft_putstr(ft_find_env("USER", e));
 	ft_putstr("\033[0m \033[36m[");
 	if (ft_strncmp(ft_find_env("PWD", e), ft_find_env("HOME", e), ft_strlen(ft_find_env("HOME", e))) == 0
@@ -33,7 +34,15 @@ void	ft_put_prompt(t_env *e)
 	}
 	else
 		ft_putstr(ft_find_env("PWD", e));
-	ft_putstr("]\033[0m\033[34m}\033[0m\033[31m~> \033[0m");
+	ft_putstr("]\033[0m\033\033[0m\033[31m~> \033[0m");
+}
+
+void		sighandler(int signum)
+{
+	if (signum == SIGINT)
+	{
+		ft_putstr("\n");
+	}
 }
 
 int		main(int ac, char **av, char **ev)
@@ -52,6 +61,7 @@ int		main(int ac, char **av, char **ev)
 	ft_get_bin(&e);
 	e.input = NULL;
 	e.arg = NULL;
+	signal(SIGINT, sighandler);
 	while (42)
 	{
 		bin = NULL;
@@ -76,3 +86,4 @@ int		main(int ac, char **av, char **ev)
 	}
 	return (0);
 }
+

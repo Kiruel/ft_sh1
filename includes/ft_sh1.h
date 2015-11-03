@@ -69,4 +69,12 @@ void 	ft_error_dir(char *dir);
 void	ft_error_args(int ac);
 void	ft_error_comm(char *input);
 
+/*
+** ft_signals
+**
+*/
+void 	sh1_set_signals_hook(void);
+void	sh1_hkd_sigint(int sign);
+void	sh1_hkd_sigtstp(int sign);
+
 #endif
