@@ -42,6 +42,8 @@ int 	ft_features_cd(t_env *e, char **arg)
 	path = NULL;
 	if (arg[1] == NULL && ft_find_env("HOME", e) == NULL)
 		ft_putendl_fd("cd: No home on env.", 2);
+	else if (ft_strcmp(arg[1], "-") == 0)
+		path = ft_strdup(ft_find_env("OLDPWD", e));
 	else if (arg[1] == NULL || ft_strcmp(arg[1], "~") == 0)
 		path = ft_go_to_home(e, path);
 	else if (ft_strcmp(arg[1], "/") == 0 || (arg[1][0] == '/' && arg[1][1] == '/'))
