@@ -12,25 +12,30 @@
 
 #include "ft_sh1.h"
 
-void	ft_maj_pwd(t_env *e, char *new_path, char **arg)
+int	ft_maj_pwd(t_env *e, char *new_path, char **arg)
 {
 	char *buf;
+	char *tmp;
 	int i;
 	int j;
 
 	j = -1;
 	i = -1;
+
 	while (ft_strncmp(e->new_env[++j], "OLDPWD=", 7) != 0);
 	free(e->new_env[j]);
 	buf = ft_strjoin("OLDPWD=", ft_find_env("PWD", e));
+	tmp = ft_strdup(new_path);
 	e->new_env[j] = buf;
 	while (ft_strncmp(e->new_env[++i], "PWD=", 4) != 0);
 	free(e->new_env[i]);
-	buf = ft_strjoin("PWD=", new_path);
+	buf = ft_strjoin("PWD=", tmp);	
 	e->new_env[i] = buf;
-	chdir(new_path);
+	chdir(tmp);
+	free(tmp);
 	if ((arg[1] && ft_strcmp(arg[1], "..") != 0) || (arg[1] == NULL || ft_strcmp(arg[1], "~") == 0))
 		free(new_path);
+	return (0);
 }
 
 int 	ft_features_cd(t_env *e, char **arg)
@@ -58,7 +63,8 @@ int 	ft_features_cd(t_env *e, char **arg)
 		path = ft_use_option_p(e, arg, tmp, path);
 	else
 		return (ft_go_to_path(e, arg, tmp, path));
-	ft_maj_pwd(e, path, arg);
+	if (ft_maj_pwd(e, path, arg) == -1)
+		return (-1);
 	return (0);
 }
 
