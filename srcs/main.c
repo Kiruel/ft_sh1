@@ -42,6 +42,9 @@ void		sighandler(int signum)
 	if (signum == SIGINT)
 	{
 		ft_putstr("\n");
+	} else if (signum == SIGQUIT) {
+		ft_putstr("\n");
+		kill(getpid(), signum);
 	}
 }
 
@@ -64,6 +67,7 @@ int		main(int ac, char **av, char **ev)
 	signal(SIGINT, sighandler);
 	while (42)
 	{
+		signal(SIGQUIT, sighandler);
 		bin = NULL;
 		ft_put_prompt(&e);
 		if (get_next_line(1, &e.input) == -1)
@@ -81,8 +85,10 @@ int		main(int ac, char **av, char **ev)
 		}
 		if (bin)
 			free(bin);
-		ft_free(&e);
-		free(e.input);
+		if (e.arg[0])
+			ft_free(&e);
+		if (e.input)
+			free(e.input);
 	}
 	return (0);
 }

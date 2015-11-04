@@ -17,18 +17,13 @@ char	**ft_array_cpy(t_env *e)
 
 int	ft_setenv(char **arg, t_env *e)
 {
-	//char **new_env = NULL;
+	char **new_env = NULL;
 
 	(void)e;
-	if (ft_strcmp(arg[0], "setenv") == 0 && arg[1] != 0)
+	if (ft_strcmp(arg[0], "setenv") == 0)
 	{
-		//new_env = ft_array_cpy(e);
-		//ft_putstr(new_env[0]);
-		return (-1);
-	}
-	else
-	{
-		ft_putstr("setenv: Please use [setenv var=...] to set a variable to this environment.\n");
+		new_env = ft_array_cpy(e);
+		ft_putstr(new_env[0]);
 		return (-1);
 	}
 	return (0);
