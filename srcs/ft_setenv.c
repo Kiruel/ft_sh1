@@ -69,6 +69,7 @@ int	ft_setenv(char **arg, t_env *e)
 	}
 	if (ft_strcmp(arg[0], "setenv") == 0)
 	{
+		// SET VARIABLE TO ENV HERE.
 		new_env = ft_array_cpy(e);
 		ft_putstr(new_env[0]);
 		return (-1);
