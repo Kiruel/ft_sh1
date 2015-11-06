@@ -14,6 +14,11 @@
 #include <stdio.h>
 #include <signal.h>
 
+void 	ft_welcome()
+{
+	ft_putstr("\n\n\n\t\t\t Minishell, made with <3.\n\n\n");
+}
+
 void	ft_put_prompt(t_env *e)
 {
 	char *tmp;
@@ -65,6 +70,7 @@ int		main(int ac, char **av, char **ev)
 	e.input = NULL;
 	e.arg = NULL;
 	signal(SIGINT, sighandler);
+	ft_welcome();
 	while (42)
 	{
 		signal(SIGQUIT, sighandler);
