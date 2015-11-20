@@ -24,7 +24,8 @@ $(SRCS)ft_tools.c \
 $(SRCS)ft_builtings.c \
 $(SRCS)ft_cd.c \
 $(SRCS)ft_cd_features.c \
-$(SRCS)ft_setenv.c
+$(SRCS)ft_setenv.c \
+$(SRCS)ft_env.c
 
 O = $(S:.c=.o)
 

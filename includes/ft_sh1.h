@@ -31,6 +31,7 @@ typedef struct 	s_env
 	char **arg;
 	char *old_pwd;
 	char *input;
+	char *setenv;
 }				t_env;
 
 void	ft_free(t_env *e);
@@ -77,5 +78,12 @@ void	ft_error_comm(char *input);
 void 	sh1_set_signals_hook(void);
 void	sh1_hkd_sigint(int sign);
 void	sh1_hkd_sigtstp(int sign);
+
+/*
+** env
+**
+*/
+int	ft_env(char **arg, t_env *e);
+void ft_print_env(t_env *e);
 
 #endif

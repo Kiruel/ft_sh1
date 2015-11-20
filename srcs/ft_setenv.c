@@ -42,24 +42,10 @@ int 	ft_parse_args(char **str)
 	return (res);
 }
 
-char	**ft_array_cpy(t_env *e)
-{
-	char **new_env = NULL;
-
-	(void)e;
-	new_env = (char **)ft_memalloc(sizeof(char*) * 2);
-	new_env[0] = (char*)ft_memalloc(sizeof(char) * 2);
-	new_env[1] = (char*)ft_memalloc(sizeof(char) * 1);
-	new_env[0][0] = 'q';
-	new_env[0][1] = '\0';
-	new_env[1][0] = '\0';
-	new_env[1] = "\0";
-	return (new_env);
-}
-
 int	ft_setenv(char **arg, t_env *e)
 {
-	char **new_env = NULL;
+	int i;
+	int j;
 
 	(void)e;
 	if (ft_parse_args(arg) == 0 && ft_strcmp(arg[0], "setenv") == 0)
@@ -69,9 +55,26 @@ int	ft_setenv(char **arg, t_env *e)
 	}
 	if (ft_strcmp(arg[0], "setenv") == 0)
 	{
-		// SET VARIABLE TO ENV HERE.
-		new_env = ft_array_cpy(e);
-		ft_putstr(new_env[0]);
+		e->setenv = (char*)ft_memalloc(sizeof(char) * ft_strlen(arg[1]) + ft_strlen(arg[2]) + 2);
+		i = 0;
+		while (arg[1][i])
+		{
+			e->setenv[i] = arg[1][i];
+			i++;
+		}
+		e->setenv[i] = '=';
+		i++;
+		j = 0;
+		while (arg[2][j])
+		{
+			if (arg[2][j] != '\"')
+			{
+				e->setenv[i] = arg[2][j];
+				i++;
+			}
+			j++;
+		}
+		e->setenv[i] = 0;
 		return (-1);
 	}
 	return (0);
