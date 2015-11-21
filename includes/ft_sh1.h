@@ -84,6 +84,7 @@ void	sh1_hkd_sigtstp(int sign);
 **
 */
 int	ft_env(char **arg, t_env *e);
+int	ft_unsetenv(char **arg, t_env *e);
 void ft_print_env(t_env *e);
 
 #endif
